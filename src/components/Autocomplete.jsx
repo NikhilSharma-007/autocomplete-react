@@ -5,6 +5,7 @@ const Autocomplete = () => {
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -24,6 +25,7 @@ const Autocomplete = () => {
   const handleChange = (event) => {
     const value = event.target.value.toLowerCase();
     setSearch(value);
+    setSelectedCity(""); // Reset the selected city on input change
 
     if (value.length >= 3) {
       const matchingCities = cities.filter((city) => {
@@ -39,6 +41,12 @@ const Autocomplete = () => {
     } else {
       setSuggestions([]);
     }
+  };
+
+  const handleCitySelect = (city) => {
+    setSearch(city.city);
+    setSelectedCity(city.city);
+    setSuggestions([]);
   };
 
   return (
@@ -58,11 +66,17 @@ const Autocomplete = () => {
               <li
                 key={suggestion.city}
                 className="px-4 py-2 hover:bg-gray-600 cursor-pointer text-white"
+                onClick={() => handleCitySelect(suggestion)}
               >
                 {suggestion.city}
               </li>
             ))}
           </ul>
+        )}
+        {selectedCity && (
+          <div className="mt-4 text-white">
+            Selected City: <span className="font-bold">{selectedCity}</span>
+          </div>
         )}
       </div>
     </div>
