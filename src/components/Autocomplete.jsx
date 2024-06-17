@@ -44,20 +44,20 @@ const Autocomplete = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-4xl font-bold text-white mb-6">City Search</h1>
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-gray-700 p-6 rounded-lg shadow-md">
         <input
           type="text"
           placeholder="Search cities..."
           value={search}
           onChange={handleChange}
-          className="w-full border-2 border-indigo-900 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full border-2 border-gray-600 rounded-md px-4 py-2 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
         {suggestions.length > 0 && (
-          <ul className="bg-white border border-gray-300 rounded-md mt-2 shadow-md">
+          <ul className="bg-gray-700 border border-gray-600 rounded-md mt-2 shadow-md">
             {suggestions.map((suggestion) => (
               <li
                 key={suggestion.city}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 hover:bg-gray-600 cursor-pointer text-white"
               >
                 {suggestion.city}
               </li>
